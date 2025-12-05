@@ -1,0 +1,70 @@
+# Qodo Merge / PR Agent configuration file (.pr_agent.toml)
+# Place this file in the root of your repository
+
+[config]
+# Set the model to use (optional, defaults are used if not specified)
+# model = "gpt-4o"
+# fallback_models = ["gpt-4o"]
+
+[github_app]
+# Commands to run automatically when a PR is opened
+pr_commands = [
+    "/describe",
+    "/review", 
+    "/improve"
+]
+
+# Enable/disable automatic tools on PR push events
+handle_push_trigger = false
+# push_commands = ["/describe", "/review"]
+
+[pr_description]
+# Generate AI title for PRs
+generate_ai_title = false
+# Publish labels to the PR
+publish_labels = true
+# Add original user description to generated description
+add_original_user_description = true
+# Enable PR type classification
+enable_pr_type = true
+# Enable file changes walkthrough section
+enable_semantic_files_types = true
+# Enable sequence diagram generation
+enable_pr_diagram = true
+
+[pr_reviewer]
+# Extra instructions for the review tool
+extra_instructions = ""
+# Enable/disable specific review sections
+require_tests_review = true
+require_estimate_effort_to_review = true
+require_security_review = true
+require_ticket_analysis_review = true
+# Enable review labels
+enable_review_labels_effort = true
+enable_review_labels_security = true
+
+[pr_code_suggestions]
+# Number of code suggestions per chunk
+num_code_suggestions_per_chunk = 3
+# Suggestions score threshold (0-10)
+suggestions_score_threshold = 0
+# Extra instructions for code suggestions
+extra_instructions = ""
+# Enable committable code suggestions
+commitable_code_suggestions = false
+# Persistent comment for suggestions
+persistent_comment = true
+# Enable thumbs up/down feedback
+allow_thumbs_up_down = true
+
+[best_practices]
+# Enable organization best practices
+enable_global_best_practices = false
+# organization_name = "YourOrg"
+
+[ignore]
+# Ignore files by glob pattern
+glob = []
+# Ignore files by regex pattern  
+regex = []
