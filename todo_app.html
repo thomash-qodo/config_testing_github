@@ -187,11 +187,52 @@
       color: #4b5563;
     }
 
+    .btn-derive {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
     .empty-state {
       text-align: center;
       font-size: 0.8rem;
       color: #9ca3af;
       padding: 16px 4px 6px;
+    }
+
+    .secondary-panel {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .secondary-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .secondary-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .secondary-list li {
+      padding: 4px 0;
+      border-bottom: none;
+      font-size: 0.8rem;
+      color: #111827;
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #111827;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
     }
 
     @media (max-width: 480px) {
@@ -233,15 +274,26 @@
 
     <ul id="todo-list"></ul>
     <div class="empty-state" id="empty-state">No tasks yet. Add your first one above.</div>
+
+    <div class="secondary-panel" id="derived-list-panel" style="display: none;">
+      <div class="secondary-title">
+        <span>Derived list from selected item</span>
+        <button type="button" class="btn-secondary" id="clear-derived">Clear</button>
+      </div>
+      <ul class="secondary-list" id="derived-list"></ul>
+    </div>
   </div>
 
   <script>
     (function () {
       const STORAGE_KEY = 'simple_todo_items_v1';
+      const DERIVED_STORAGE_KEY = 'simple_todo_derived_v1';
 
       /** @type {{ id: string; text: string; completed: boolean; }[]} */
       let todos = [];
       let currentFilter = 'all';
+      /** @type {{ sourceId: string | null; items: { id: string; text: string; completed: boolean; }[] }} */
+      let derivedState = { sourceId: null, items: [] };
 
       const form = document.getElementById('todo-form');
       const input = document.getElementById('todo-input');
@@ -251,17 +303,36 @@
       const emptyState = document.getElementById('empty-state');
       const filterButtons = document.querySelectorAll('.filter-btn');
       const clearCompletedBtn = document.getElementById('clear-completed');
+      const derivedPanel = document.getElementById('derived-list-panel');
+      const derivedListEl = document.getElementById('derived-list');
+      const clearDerivedBtn = document.getElementById('clear-derived');
 
       function loadFromStorage() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return;
-          const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed)) {
-            todos = parsed;
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+              todos = parsed;
+            }
           }
         } catch (e) {
           console.error('Failed to load todos from storage', e);
+        }
+
+        try {
+          const rawDerived = localStorage.getItem(DERIVED_STORAGE_KEY);
+          if (rawDerived) {
+            const parsedDerived = JSON.parse(rawDerived);
+            if (parsedDerived && typeof parsedDerived === 'object') {
+              derivedState = {
+                sourceId: parsedDerived.sourceId || null,
+                items: Array.isArray(parsedDerived.items) ? parsedDerived.items : [],
+              };
+            }
+          }
+        } catch (e) {
+          console.error('Failed to load derived list from storage', e);
         }
       }
 
@@ -271,6 +342,12 @@
         } catch (e) {
           console.error('Failed to save todos to storage', e);
         }
+
+        try {
+          localStorage.setItem(DERIVED_STORAGE_KEY, JSON.stringify(derivedState));
+        } catch (e) {
+          console.error('Failed to save derived list to storage', e);
+        }
       }
 
       function updateCounter() {
@@ -278,6 +355,22 @@
         const remaining = todos.filter(t => !t.completed).length;
         const label = total === 1 ? 'task' : 'tasks';
         counter.textContent = `${remaining} of ${total} ${label} left`;
+      }
+
+      function renderDerivedList() {
+        if (!derivedState.sourceId || derivedState.items.length === 0) {
+          derivedPanel.style.display = 'none';
+          derivedListEl.innerHTML = '';
+          return;
+        }
+
+        derivedPanel.style.display = 'block';
+        derivedListEl.innerHTML = '';
+        derivedState.items.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item.text;
+          derivedListEl.appendChild(li);
+        });
       }
 
       function render() {
@@ -325,6 +418,12 @@
           editBtn.className = 'btn-small btn-edit';
           editBtn.addEventListener('click', () => startEditTodo(todo.id));
 
+          const deriveBtn = document.createElement('button');
+          deriveBtn.type = 'button';
+          deriveBtn.textContent = 'Use as new list';
+          deriveBtn.className = 'btn-small btn-derive';
+          deriveBtn.addEventListener('click', () => createDerivedListFrom(todo.id));
+
           const deleteBtn = document.createElement('button');
           deleteBtn.type = 'button';
           deleteBtn.textContent = 'Delete';
@@ -332,6 +431,7 @@
           deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
 
           actions.appendChild(editBtn);
+          actions.appendChild(deriveBtn);
           actions.appendChild(deleteBtn);
 
           li.appendChild(main);
@@ -341,6 +441,7 @@
         });
 
         updateCounter();
+        renderDerivedList();
       }
 
       function addTodo(text) {
@@ -363,6 +464,12 @@
 
       function deleteTodo(id) {
         todos = todos.filter(t => t.id !== id);
+
+        // If we delete the source of the derived list, clear that list
+        if (derivedState.sourceId === id) {
+          derivedState = { sourceId: null, items: [] };
+        }
+
         saveToStorage();
         render();
       }
@@ -378,6 +485,12 @@
           return;
         }
         todos = todos.map(t => (t.id === id ? { ...t, text: trimmed } : t));
+
+        // If this todo is the source of the derived list, update the first derived item text as well
+        if (derivedState.sourceId === id && derivedState.items.length > 0) {
+          derivedState.items[0] = { ...derivedState.items[0], text: trimmed };
+        }
+
         saveToStorage();
         render();
       }
@@ -394,6 +507,32 @@
           btn.classList.toggle('active', btn.dataset.filter === filter);
         });
         render();
+      }
+
+      function createDerivedListFrom(id) {
+        const todo = todos.find(t => t.id === id);
+        if (!todo) return;
+
+        // Start a brand new derived list based on the selected item
+        derivedState = {
+          sourceId: id,
+          items: [
+            {
+              id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+              text: todo.text,
+              completed: false,
+            },
+          ],
+        };
+
+        saveToStorage();
+        renderDerivedList();
+      }
+
+      function clearDerived() {
+        derivedState = { sourceId: null, items: [] };
+        saveToStorage();
+        renderDerivedList();
       }
 
       form.addEventListener('submit', e => {
@@ -417,6 +556,7 @@
       });
 
       clearCompletedBtn.addEventListener('click', clearCompleted);
+      clearDerivedBtn.addEventListener('click', clearDerived);
 
       loadFromStorage();
       render();
