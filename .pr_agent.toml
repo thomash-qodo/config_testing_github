@@ -43,6 +43,8 @@ require_ticket_analysis_review = true
 # Enable review labels
 enable_review_labels_effort = true
 enable_review_labels_security = true
+#Persistent comment for reviews
+persistent_comment = true
 
 [pr_code_suggestions]
 # Number of code suggestions per chunk
