@@ -149,6 +149,7 @@
       background: #f3f4f6;
       padding: 4px;
       border-radius: 12px;
+      flex-wrap: wrap;
     }
 
     .filter-btn {
@@ -311,6 +312,175 @@
       background: #bfdbfe;
     }
 
+    .priority-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+
+    .priority-high {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    .priority-medium {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .priority-low {
+      background: #dbeafe;
+      color: #0284c7;
+      border: 1px solid #bfdbfe;
+    }
+
+    .priority-selector {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .priority-option {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 2px solid #e5e7eb;
+      background: #fafafa;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .priority-option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .priority-option.selected-high {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fecaca;
+    }
+
+    .priority-option.selected-medium {
+      background: #fef3c7;
+      color: #d97706;
+      border-color: #fde68a;
+    }
+
+    .priority-option.selected-low {
+      background: #dbeafe;
+      color: #0284c7;
+      border-color: #bfdbfe;
+    }
+
+    .sort-button {
+      background: transparent;
+      color: #6b7280;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid #e5e7eb;
+      margin-left: 8px;
+    }
+
+    .sort-button:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      border-color: #667eea;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .sort-button.active {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      border-color: #667eea;
+    }
+
+    .date-input-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .date-input-wrapper label {
+      font-size: 0.85rem;
+      color: #6b7280;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .date-input-wrapper input[type="date"] {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 2px solid #e5e7eb;
+      font-size: 0.85rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #fafafa;
+      color: #1f2937;
+    }
+
+    .date-input-wrapper input[type="date"]:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: #ffffff;
+    }
+
+    .date-input-wrapper button {
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .due-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .due-overdue {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    .due-today {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .due-upcoming {
+      background: #dbeafe;
+      color: #0284c7;
+      border: 1px solid #bfdbfe;
+    }
+
+    .due-future {
+      background: #f3f4f6;
+      color: #6b7280;
+      border: 1px solid #e5e7eb;
+    }
+
     .empty-state {
       text-align: center;
       font-size: 0.9rem;
@@ -432,11 +602,24 @@
       <button type="submit" class="btn-add" id="add-btn" disabled>Add</button>
     </form>
 
+    <div class="priority-selector">
+      <button type="button" class="priority-option selected-medium" data-priority="medium">Medium</button>
+      <button type="button" class="priority-option" data-priority="high">High</button>
+      <button type="button" class="priority-option" data-priority="low">Low</button>
+    </div>
+
+    <div class="date-input-wrapper">
+      <label for="due-date-input">Due Date:</label>
+      <input type="date" id="due-date-input" />
+      <button type="button" class="btn-secondary" id="clear-date-btn">Clear</button>
+    </div>
+
     <div class="filters">
       <div class="filter-buttons">
         <button type="button" class="filter-btn active" data-filter="all">All</button>
         <button type="button" class="filter-btn" data-filter="active">Active</button>
         <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+        <button type="button" class="sort-button" id="sort-priority">Sort by Priority</button>
       </div>
       <button type="button" class="btn-clear" id="clear-completed">Clear completed</button>
     </div>
@@ -458,9 +641,12 @@
       const STORAGE_KEY = 'simple_todo_items_v1';
       const DERIVED_STORAGE_KEY = 'simple_todo_derived_v1';
 
-      /** @type {{ id: string; text: string; completed: boolean; }[]} */
+      /** @type {{ id: string; text: string; completed: boolean; priority: 'high' | 'medium' | 'low'; dueDate: string | null; }[]} */
       let todos = [];
       let currentFilter = 'all';
+      let currentPriority = 'medium';
+      let sortByPriority = false;
+      let currentDueDate = null;
       /** @type {{ sourceId: string | null; items: { id: string; text: string; completed: boolean; }[] }} */
       let derivedState = { sourceId: null, items: [] };
 
@@ -475,6 +661,10 @@
       const derivedPanel = document.getElementById('derived-list-panel');
       const derivedListEl = document.getElementById('derived-list');
       const clearDerivedBtn = document.getElementById('clear-derived');
+      const priorityOptions = document.querySelectorAll('.priority-option');
+      const sortPriorityBtn = document.getElementById('sort-priority');
+      const dueDateInput = document.getElementById('due-date-input');
+      const clearDateBtn = document.getElementById('clear-date-btn');
 
       function loadFromStorage() {
         try {
@@ -526,6 +716,58 @@
         counter.textContent = `${remaining} of ${total} ${label} left`;
       }
 
+      function getPriorityValue(priority) {
+        const values = { high: 3, medium: 2, low: 1 };
+        return values[priority] || 2;
+      }
+
+      function getPriorityLabel(priority) {
+        const labels = { high: 'High', medium: 'Medium', low: 'Low' };
+        return labels[priority] || 'Medium';
+      }
+
+      function getDueDateStatus(dueDate) {
+        if (!dueDate) return null;
+        
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const due = new Date(dueDate);
+        due.setHours(0, 0, 0, 0);
+        
+        const diffTime = due - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays < 0) return 'overdue';
+        if (diffDays === 0) return 'today';
+        if (diffDays <= 3) return 'upcoming';
+        return 'future';
+      }
+
+      function formatDueDate(dueDate) {
+        if (!dueDate) return '';
+        
+        const date = new Date(dueDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const due = new Date(dueDate);
+        due.setHours(0, 0, 0, 0);
+        
+        const diffTime = due - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays < 0) {
+          const absDays = Math.abs(diffDays);
+          return `${absDays} day${absDays === 1 ? '' : 's'} overdue`;
+        }
+        if (diffDays === 0) return 'Due today';
+        if (diffDays === 1) return 'Due tomorrow';
+        if (diffDays <= 7) return `Due in ${diffDays} days`;
+        
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+
       function renderDerivedList() {
         if (!derivedState.sourceId || derivedState.items.length === 0) {
           derivedPanel.style.display = 'none';
@@ -552,6 +794,12 @@
           visible = todos.filter(t => t.completed);
         }
 
+        if (sortByPriority) {
+          visible = [...visible].sort((a, b) => {
+            return getPriorityValue(b.priority) - getPriorityValue(a.priority);
+          });
+        }
+
         if (visible.length === 0) {
           emptyState.style.display = 'block';
         } else {
@@ -575,8 +823,21 @@
           span.className = 'todo-text' + (todo.completed ? ' completed' : '');
           span.textContent = todo.text;
 
+          const priorityBadge = document.createElement('span');
+          priorityBadge.className = `priority-badge priority-${todo.priority}`;
+          priorityBadge.textContent = getPriorityLabel(todo.priority);
+
           main.appendChild(checkbox);
           main.appendChild(span);
+          main.appendChild(priorityBadge);
+
+          if (todo.dueDate) {
+            const dueDateBadge = document.createElement('span');
+            const status = getDueDateStatus(todo.dueDate);
+            dueDateBadge.className = `due-date-badge due-${status}`;
+            dueDateBadge.textContent = formatDueDate(todo.dueDate);
+            main.appendChild(dueDateBadge);
+          }
 
           const actions = document.createElement('div');
           actions.className = 'todo-actions';
@@ -620,6 +881,8 @@
           id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
           text: trimmed,
           completed: false,
+          priority: currentPriority,
+          dueDate: currentDueDate,
         });
         saveToStorage();
         render();
@@ -676,6 +939,22 @@
         render();
       }
 
+      function setPriority(priority) {
+        currentPriority = priority;
+        priorityOptions.forEach(btn => {
+          btn.classList.remove('selected-high', 'selected-medium', 'selected-low');
+          if (btn.dataset.priority === priority) {
+            btn.classList.add(`selected-${priority}`);
+          }
+        });
+      }
+
+      function toggleSortByPriority() {
+        sortByPriority = !sortByPriority;
+        sortPriorityBtn.classList.toggle('active', sortByPriority);
+        render();
+      }
+
       function createDerivedListFrom(id) {
         const todo = todos.find(t => t.id === id);
         if (!todo) return;
@@ -723,6 +1002,26 @@
 
       clearCompletedBtn.addEventListener('click', clearCompleted);
       clearDerivedBtn.addEventListener('click', clearDerived);
+
+      priorityOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const priority = btn.dataset.priority;
+          if (priority) {
+            setPriority(priority);
+          }
+        });
+      });
+
+      sortPriorityBtn.addEventListener('click', toggleSortByPriority);
+
+      dueDateInput.addEventListener('change', (e) => {
+        currentDueDate = e.target.value || null;
+      });
+
+      clearDateBtn.addEventListener('click', () => {
+        dueDateInput.value = '';
+        currentDueDate = null;
+      });
 
       loadFromStorage();
       render();

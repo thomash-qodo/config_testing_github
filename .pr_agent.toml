@@ -13,6 +13,12 @@ pr_commands = [
     "/review", 
     "/improve"
 ]
+handle_push_trigger = true
+push_commands = [
+    "/review",
+    "/compliance",
+    "/improve"
+]
 
 # Enable/disable automatic tools on PR push events
 handle_push_trigger = false
