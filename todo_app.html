@@ -9,7 +9,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
@@ -17,231 +17,400 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      background: #f3f4f6;
-      padding: 40px 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 60px 20px;
     }
 
     .app {
       width: 100%;
-      max-width: 480px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-      padding: 20px 18px 16px;
+      max-width: 540px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      padding: 32px 28px 24px;
+      animation: slideIn 0.4s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
 
     .app-title {
-      font-size: 1.35rem;
-      font-weight: 650;
-      color: #111827;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
     }
 
     .counter {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: #6b7280;
+      font-weight: 500;
+      background: #f3f4f6;
+      padding: 6px 12px;
+      border-radius: 20px;
     }
 
     form {
       display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 0.9rem;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 2px solid #e5e7eb;
+      font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: all 0.2s ease;
+      background: #fafafa;
     }
 
     input[type="text"]:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      background: #ffffff;
+    }
+
+    input[type="text"]::placeholder {
+      color: #9ca3af;
     }
 
     button {
       border: none;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.15s ease, transform 0.05s ease;
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     button:active {
-      transform: translateY(1px);
+      transform: translateY(0);
     }
 
     .btn-add {
-      background: #2563eb;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-add:hover {
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
     }
 
     .btn-add:disabled {
-      background: #9ca3af;
-      cursor: default;
+      background: #d1d5db;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
     }
 
     .filters {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.78rem;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
       color: #6b7280;
     }
 
     .filter-buttons {
       display: flex;
-      gap: 4px;
+      gap: 6px;
+      background: #f3f4f6;
+      padding: 4px;
+      border-radius: 12px;
     }
 
     .filter-btn {
       background: transparent;
-      border-radius: 999px;
-      padding: 4px 8px;
-      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 6px 14px;
+      border: none;
       color: #6b7280;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      transform: none;
+      box-shadow: none;
     }
 
     .filter-btn.active {
-      border-color: #2563eb;
-      color: #2563eb;
-      background: rgba(37, 99, 235, 0.06);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     .btn-clear {
       background: transparent;
       color: #ef4444;
-      padding: 4px 8px;
+      padding: 6px 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-clear:hover {
+      background: rgba(239, 68, 68, 0.1);
+      transform: none;
+      box-shadow: none;
     }
 
     ul {
       list-style: none;
-      max-height: 360px;
+      max-height: 400px;
       overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #d1d5db #f3f4f6;
+    }
+
+    ul::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ul::-webkit-scrollbar-track {
+      background: #f3f4f6;
+      border-radius: 10px;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 10px;
+    }
+
+    ul::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
     }
 
     li {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 6px 2px;
-      border-bottom: 1px solid #f3f4f6;
-      font-size: 0.9rem;
+      gap: 12px;
+      padding: 14px 12px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      background: #fafafa;
+      border: 1px solid #f3f4f6;
+      transition: all 0.2s ease;
+    }
+
+    li:hover {
+      background: #ffffff;
+      border-color: #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     li:last-child {
-      border-bottom: none;
+      margin-bottom: 0;
     }
 
     .todo-main {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       flex: 1;
+    }
+
+    .todo-main input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #667eea;
     }
 
     .todo-text {
       flex: 1;
       word-break: break-word;
+      color: #1f2937;
+      line-height: 1.5;
     }
 
     .todo-text.completed {
       text-decoration: line-through;
       color: #9ca3af;
+      opacity: 0.7;
     }
 
     .todo-actions {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .btn-small {
-      padding: 4px 6px;
-      font-size: 0.7rem;
-      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-small:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .btn-delete {
-      background: #f3f4f6;
-      color: #ef4444;
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .btn-delete:hover {
+      background: #fecaca;
     }
 
     .btn-edit {
-      background: #f3f4f6;
-      color: #4b5563;
+      background: #e0e7ff;
+      color: #4f46e5;
+    }
+
+    .btn-edit:hover {
+      background: #c7d2fe;
     }
 
     .btn-derive {
-      background: #e0f2fe;
-      color: #0369a1;
+      background: #dbeafe;
+      color: #0284c7;
+    }
+
+    .btn-derive:hover {
+      background: #bfdbfe;
     }
 
     .empty-state {
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #9ca3af;
-      padding: 16px 4px 6px;
+      padding: 40px 20px;
+      background: #fafafa;
+      border-radius: 12px;
+      border: 2px dashed #e5e7eb;
     }
 
     .secondary-panel {
-      margin-top: 16px;
-      padding-top: 10px;
-      border-top: 1px solid #e5e7eb;
-      font-size: 0.8rem;
+      margin-top: 20px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      font-size: 0.85rem;
       color: #4b5563;
     }
 
     .secondary-title {
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      color: #1f2937;
     }
 
     .secondary-list {
       list-style: none;
       padding-left: 0;
+      max-height: none;
     }
 
     .secondary-list li {
-      padding: 4px 0;
-      border-bottom: none;
-      font-size: 0.8rem;
-      color: #111827;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      border: 1px solid rgba(102, 126, 234, 0.15);
+      font-size: 0.85rem;
+      color: #1f2937;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .secondary-list li:hover {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(102, 126, 234, 0.25);
     }
 
     .btn-secondary {
-      background: #f3f4f6;
-      color: #111827;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.8);
+      color: #4b5563;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 1);
+      border-color: rgba(102, 126, 234, 0.3);
+      transform: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 480px) {
       body {
-        padding: 18px 10px;
+        padding: 30px 16px;
       }
 
       .app {
-        padding: 16px 12px 12px;
+        padding: 24px 20px 20px;
+        border-radius: 20px;
+      }
+
+      .app-title {
+        font-size: 1.75rem;
+      }
+
+      input[type="text"] {
+        padding: 12px 16px;
+      }
+
+      button {
+        padding: 12px 16px;
+      }
+
+      li {
+        padding: 12px 10px;
+      }
+
+      .todo-actions {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .btn-small {
+        width: 100%;
+        padding: 6px 8px;
       }
     }
   </style>
@@ -310,11 +479,11 @@
       function loadFromStorage() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed)) {
-              todos = parsed;
-            }
+          if (!raw) return;
+          
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            todos = parsed;
           }
         } catch (e) {
           console.error('Failed to load todos from storage', e);
@@ -322,14 +491,14 @@
 
         try {
           const rawDerived = localStorage.getItem(DERIVED_STORAGE_KEY);
-          if (rawDerived) {
-            const parsedDerived = JSON.parse(rawDerived);
-            if (parsedDerived && typeof parsedDerived === 'object') {
-              derivedState = {
-                sourceId: parsedDerived.sourceId || null,
-                items: Array.isArray(parsedDerived.items) ? parsedDerived.items : [],
-              };
-            }
+          if (!rawDerived) return;
+          
+          const parsedDerived = JSON.parse(rawDerived);
+          if (parsedDerived && typeof parsedDerived === 'object') {
+            derivedState = {
+              sourceId: parsedDerived.sourceId || null,
+              items: Array.isArray(parsedDerived.items) ? parsedDerived.items : [],
+            };
           }
         } catch (e) {
           console.error('Failed to load derived list from storage', e);
@@ -465,7 +634,6 @@
       function deleteTodo(id) {
         todos = todos.filter(t => t.id !== id);
 
-        // If we delete the source of the derived list, clear that list
         if (derivedState.sourceId === id) {
           derivedState = { sourceId: null, items: [] };
         }
@@ -486,7 +654,6 @@
         }
         todos = todos.map(t => (t.id === id ? { ...t, text: trimmed } : t));
 
-        // If this todo is the source of the derived list, update the first derived item text as well
         if (derivedState.sourceId === id && derivedState.items.length > 0) {
           derivedState.items[0] = { ...derivedState.items[0], text: trimmed };
         }
@@ -513,7 +680,6 @@
         const todo = todos.find(t => t.id === id);
         if (!todo) return;
 
-        // Start a brand new derived list based on the selected item
         derivedState = {
           sourceId: id,
           items: [
