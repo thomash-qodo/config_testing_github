@@ -481,6 +481,257 @@
       border: 1px solid #e5e7eb;
     }
 
+    .category-selector {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .category-option {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 2px solid #e5e7eb;
+      background: #fafafa;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .category-option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-option.selected {
+      border-width: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-work.selected {
+      background: #dbeafe;
+      color: #0284c7;
+      border-color: #0284c7;
+    }
+
+    .category-personal.selected {
+      background: #fce7f3;
+      color: #db2777;
+      border-color: #db2777;
+    }
+
+    .category-shopping.selected {
+      background: #dcfce7;
+      color: #16a34a;
+      border-color: #16a34a;
+    }
+
+    .category-health.selected {
+      background: #fef3c7;
+      color: #d97706;
+      border-color: #d97706;
+    }
+
+    .category-other.selected {
+      background: #e0e7ff;
+      color: #4f46e5;
+      border-color: #4f46e5;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .category-work {
+      background: #dbeafe;
+      color: #0284c7;
+      border: 1px solid #bfdbfe;
+    }
+
+    .category-personal {
+      background: #fce7f3;
+      color: #db2777;
+      border: 1px solid #fbcfe8;
+    }
+
+    .category-shopping {
+      background: #dcfce7;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+    }
+
+    .category-health {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .category-other {
+      background: #e0e7ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+    }
+
+    .category-filter-section {
+      margin-bottom: 12px;
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .category-filter-title {
+      font-size: 0.8rem;
+      color: #6b7280;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .category-filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .category-filter-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .category-filter-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-filter-btn.active {
+      border-width: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-filter-btn.active.category-work {
+      background: #dbeafe;
+      color: #0284c7;
+      border-color: #0284c7;
+    }
+
+    .category-filter-btn.active.category-personal {
+      background: #fce7f3;
+      color: #db2777;
+      border-color: #db2777;
+    }
+
+    .category-filter-btn.active.category-shopping {
+      background: #dcfce7;
+      color: #16a34a;
+      border-color: #16a34a;
+    }
+
+    .category-filter-btn.active.category-health {
+      background: #fef3c7;
+      color: #d97706;
+      border-color: #d97706;
+    }
+
+    .category-filter-btn.active.category-other {
+      background: #e0e7ff;
+      color: #4f46e5;
+      border-color: #4f46e5;
+    }
+
+    .search-wrapper {
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border-radius: 12px;
+      border: 2px solid #e5e7eb;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #fafafa;
+    }
+
+    .search-input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: #ffffff;
+    }
+
+    .search-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #e5e7eb;
+      color: #6b7280;
+      border: none;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    .clear-search-btn:hover {
+      background: #d1d5db;
+      color: #374151;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: none;
+    }
+
+    .search-highlight {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 600;
+      padding: 1px 2px;
+      border-radius: 3px;
+    }
+
+    .search-stats {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+      padding: 6px 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      text-align: center;
+    }
+
     .empty-state {
       text-align: center;
       font-size: 0.9rem;
@@ -614,6 +865,39 @@
       <button type="button" class="btn-secondary" id="clear-date-btn">Clear</button>
     </div>
 
+    <div class="category-selector">
+      <button type="button" class="category-option category-work" data-category="work">💼 Work</button>
+      <button type="button" class="category-option category-personal" data-category="personal">🏠 Personal</button>
+      <button type="button" class="category-option category-shopping" data-category="shopping">🛒 Shopping</button>
+      <button type="button" class="category-option category-health" data-category="health">💪 Health</button>
+      <button type="button" class="category-option category-other selected" data-category="other">📌 Other</button>
+    </div>
+
+    <div class="search-wrapper">
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="🔍 Search tasks..."
+        autocomplete="off"
+      />
+      <button type="button" id="clear-search-btn" class="clear-search-btn" style="display: none;">✕</button>
+    </div>
+
+    <div id="search-stats" class="search-stats" style="display: none;"></div>
+
+    <div class="category-filter-section">
+      <div class="category-filter-title">Filter by Category:</div>
+      <div class="category-filters">
+        <button type="button" class="category-filter-btn" data-category-filter="all">All</button>
+        <button type="button" class="category-filter-btn category-work" data-category-filter="work">💼 Work</button>
+        <button type="button" class="category-filter-btn category-personal" data-category-filter="personal">🏠 Personal</button>
+        <button type="button" class="category-filter-btn category-shopping" data-category-filter="shopping">🛒 Shopping</button>
+        <button type="button" class="category-filter-btn category-health" data-category-filter="health">💪 Health</button>
+        <button type="button" class="category-filter-btn category-other" data-category-filter="other">📌 Other</button>
+      </div>
+    </div>
+
     <div class="filters">
       <div class="filter-buttons">
         <button type="button" class="filter-btn active" data-filter="all">All</button>
@@ -641,12 +925,15 @@
       const STORAGE_KEY = 'simple_todo_items_v1';
       const DERIVED_STORAGE_KEY = 'simple_todo_derived_v1';
 
-      /** @type {{ id: string; text: string; completed: boolean; priority: 'high' | 'medium' | 'low'; dueDate: string | null; }[]} */
+      /** @type {{ id: string; text: string; completed: boolean; priority: 'high' | 'medium' | 'low'; dueDate: string | null; category: string; }[]} */
       let todos = [];
       let currentFilter = 'all';
       let currentPriority = 'medium';
       let sortByPriority = false;
       let currentDueDate = null;
+      let currentCategory = 'other';
+      let categoryFilter = 'all';
+      let searchQuery = '';
       /** @type {{ sourceId: string | null; items: { id: string; text: string; completed: boolean; }[] }} */
       let derivedState = { sourceId: null, items: [] };
 
@@ -665,6 +952,11 @@
       const sortPriorityBtn = document.getElementById('sort-priority');
       const dueDateInput = document.getElementById('due-date-input');
       const clearDateBtn = document.getElementById('clear-date-btn');
+      const categoryOptions = document.querySelectorAll('.category-option');
+      const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const searchStats = document.getElementById('search-stats');
 
       function loadFromStorage() {
         try {
@@ -768,6 +1060,38 @@
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
 
+      function getCategoryLabel(category) {
+        const labels = {
+          work: '💼 Work',
+          personal: '🏠 Personal',
+          shopping: '🛒 Shopping',
+          health: '💪 Health',
+          other: '📌 Other'
+        };
+        return labels[category] || '📌 Other';
+      }
+
+      function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\function getCategoryLabel(category) {
+        const labels = {
+          work: '💼 Work',
+          personal: '🏠 Personal',
+          shopping: '🛒 Shopping',
+          health: '💪 Health',
+          other: '📌 Other'
+        };
+        return labels[category] || '📌 Other';
+      }');
+      }
+
+      function highlightText(text, query) {
+        if (!query.trim()) return text;
+        
+        const escapedQuery = escapeRegExp(query);
+        const regex = new RegExp(`(${escapedQuery})`, 'gi');
+        return text.replace(regex, '<span class="search-highlight">$1</span>');
+      }
+
       function renderDerivedList() {
         if (!derivedState.sourceId || derivedState.items.length === 0) {
           derivedPanel.style.display = 'none';
@@ -794,10 +1118,28 @@
           visible = todos.filter(t => t.completed);
         }
 
+        if (categoryFilter !== 'all') {
+          visible = visible.filter(t => t.category === categoryFilter);
+        }
+
+        if (searchQuery.trim()) {
+          const query = searchQuery.toLowerCase();
+          visible = visible.filter(t => t.text.toLowerCase().includes(query));
+        }
+
         if (sortByPriority) {
           visible = [...visible].sort((a, b) => {
             return getPriorityValue(b.priority) - getPriorityValue(a.priority);
           });
+        }
+
+        // Update search stats
+        if (searchQuery.trim()) {
+          searchStats.style.display = 'block';
+          const matchCount = visible.length;
+          searchStats.textContent = `Found ${matchCount} task${matchCount === 1 ? '' : 's'} matching "${searchQuery}"`;
+        } else {
+          searchStats.style.display = 'none';
         }
 
         if (visible.length === 0) {
@@ -821,7 +1163,16 @@
 
           const span = document.createElement('span');
           span.className = 'todo-text' + (todo.completed ? ' completed' : '');
-          span.textContent = todo.text;
+          
+          if (searchQuery.trim()) {
+            span.innerHTML = highlightText(todo.text, searchQuery);
+          } else {
+            span.textContent = todo.text;
+          }
+
+          const categoryBadge = document.createElement('span');
+          categoryBadge.className = `category-badge category-${todo.category}`;
+          categoryBadge.textContent = getCategoryLabel(todo.category);
 
           const priorityBadge = document.createElement('span');
           priorityBadge.className = `priority-badge priority-${todo.priority}`;
@@ -829,6 +1180,7 @@
 
           main.appendChild(checkbox);
           main.appendChild(span);
+          main.appendChild(categoryBadge);
           main.appendChild(priorityBadge);
 
           if (todo.dueDate) {
@@ -883,6 +1235,7 @@
           completed: false,
           priority: currentPriority,
           dueDate: currentDueDate,
+          category: currentCategory,
         });
         saveToStorage();
         render();
@@ -955,6 +1308,21 @@
         render();
       }
 
+      function setCategory(category) {
+        currentCategory = category;
+        categoryOptions.forEach(btn => {
+          btn.classList.toggle('selected', btn.dataset.category === category);
+        });
+      }
+
+      function setCategoryFilter(category) {
+        categoryFilter = category;
+        categoryFilterBtns.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.categoryFilter === category);
+        });
+        render();
+      }
+
       function createDerivedListFrom(id) {
         const todo = todos.find(t => t.id === id);
         if (!todo) return;
@@ -1021,6 +1389,37 @@
       clearDateBtn.addEventListener('click', () => {
         dueDateInput.value = '';
         currentDueDate = null;
+      });
+
+      categoryOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.dataset.category;
+          if (category) {
+            setCategory(category);
+          }
+        });
+      });
+
+      categoryFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.dataset.categoryFilter;
+          if (category) {
+            setCategoryFilter(category);
+          }
+        });
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        clearSearchBtn.style.display = searchQuery ? 'flex' : 'none';
+        render();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearchBtn.style.display = 'none';
+        render();
       });
 
       loadFromStorage();
